@@ -7,6 +7,7 @@ Una API REST completa para una red social desarrollada con Node.js, Express y Mo
 - [Requisitos Previos](#requisitos-previos)
 - [Configuración del Proyecto](#configuración-del-proyecto)
 - [Estructura del Proyecto](#estructura-del-proyecto)
+- [Autenticación](#autenticación)
 - [Variables de Entorno](#variables-de-entorno)
 - [Base de Datos](#base-de-datos)
 - [Endpoints API](#endpoints-api)
@@ -32,32 +33,118 @@ cd api-rest-red-social
 npm install
 ```
 
-3. Configurar variables de entorno:
-   - Crear un archivo `.env` en la raíz del proyecto
-   - Copiar el contenido de `.env.example` (si existe) o crear las variables necesarias
-
-4. Iniciar el servidor:
-```bash
-npm start
-```
-
 ## Estructura del Proyecto
 
 ```
 api-rest-red-social/
-├── controllers/         # Controladores de la aplicación
-│   ├── follow.js       # Lógica para seguir/dejar de seguir usuarios
-│   ├── publication.js  # Lógica para gestionar publicaciones
-│   └── user.js         # Lógica para gestionar usuarios
-├── database/
-│   └── connection.js   # Configuración de conexión a MongoDB
-├── routes/             # Definición de rutas de la API
-│   ├── follow.js       # Rutas para seguimientos
-│   ├── publication.js  # Rutas para publicaciones
-│   └── user.js        # Rutas para usuarios
-├── .env               # Variables de entorno
-├── index.js           # Punto de entrada de la aplicación
-└── package.json       # Dependencias y scripts
+├── controllers/        # Controladores de la aplicación
+│   └── user.js        # Controlador de usuarios y autenticación
+├── middlewares/       # Middlewares
+│   └── auth.js        # Middleware de autenticación
+├── models/           # Modelos de la base de datos
+│   └── user.js       # Modelo de usuario
+├── routes/           # Rutas de la API
+│   └── user.js       # Rutas de usuario y autenticación
+├── services/         # Servicios
+│   └── jwt.js        # Servicio para manejo de JWT
+└── index.js          # Punto de entrada de la aplicación
+```
+
+## Autenticación
+
+El sistema implementa autenticación basada en JWT (JSON Web Tokens) con las siguientes características:
+
+### Modelo de Usuario
+
+El modelo de usuario incluye los siguientes campos:
+- `name`: Nombre del usuario (requerido)
+- `surname`: Apellido del usuario (opcional)
+- `nick`: Nombre de usuario único (requerido)
+- `email`: Correo electrónico único (requerido)
+- `password`: Contraseña encriptada (requerido)
+- `role`: Rol del usuario (default: "role_user")
+- `image`: Avatar del usuario (default: "default.png")
+- `created_at`: Fecha de creación
+
+### Endpoints de Autenticación
+
+#### Registro de Usuario
+```http
+POST /api/register
+Content-Type: application/json
+
+{
+    "name": "Nombre Usuario",
+    "surname": "Apellido Usuario",
+    "nick": "nickname",
+    "email": "usuario@email.com",
+    "password": "contraseña"
+}
+```
+
+#### Login de Usuario
+```http
+POST /api/login
+Content-Type: application/json
+
+{
+    "email": "usuario@email.com",
+    "password": "contraseña"
+}
+```
+
+### Características de Seguridad
+
+1. **Encriptación de Contraseñas**
+   - Utiliza bcrypt para el hash de contraseñas
+   - Salt de 10 rondas para mayor seguridad
+
+2. **Tokens JWT**
+   - Generados al hacer login
+   - Duración: 30 días
+   - Contienen información del usuario (id, nombre, rol, etc.)
+
+3. **Middleware de Autenticación**
+   - Protege rutas privadas
+   - Verifica validez del token
+   - Verifica expiración del token
+   - Inyecta datos del usuario en la request
+
+### Ejemplo de Uso de Rutas Protegidas
+
+Para acceder a rutas protegidas, incluir el token en el header:
+
+```http
+GET /api/ruta-protegida
+Authorization: Bearer <token>
+```
+
+### Respuestas del Sistema
+
+#### Registro Exitoso
+```json
+{
+    "status": "success",
+    "message": "Usuario registrado correctamente",
+    "user": {
+        // Datos del usuario registrado
+    }
+}
+```
+
+#### Login Exitoso
+```json
+{
+    "status": "success",
+    "message": "Login exitoso",
+    "user": {
+        "id": "user_id",
+        "name": "Nombre",
+        "email": "email@example.com",
+        // Otros datos del usuario
+    },
+    "token": "JWT_TOKEN"
+}
 ```
 
 ## Variables de Entorno

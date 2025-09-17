@@ -5,7 +5,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    username: {
+    surname: {
+        type: String
+    },
+    nick: {
         type: String,
         required: true,
         unique: true
@@ -19,17 +22,13 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    avatar: {
-        type: String,
-        default: 'default.png'
-    },
-    bio: {
-        type: String,
-        default: ''
-    },
     role: {
         type: String,
-        default: 'user'
+        default: "role_user"
+    },
+    image: {
+        type: String,
+        default: "default.png"
     },
     created_at: {
         type: Date,
@@ -37,4 +36,4 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model("User", UserSchema);

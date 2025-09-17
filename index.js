@@ -5,7 +5,7 @@ const cors = require('cors');
 const connectDB = require('./database/connection');
 
 (async () => {
-  await connectDB(); // Conéctate a MongoDB antes de levantar el server
+  await connectDB(); // Conéctar a MongoDB antes de levantar el server
 
   const app = express();
   const PORT = process.env.PORT || 3900;
@@ -17,7 +17,7 @@ const connectDB = require('./database/connection');
 
   console.log('Bienvenido a mi API REST de red social arrancada');
 
-  // Rutas (ojo: los nombres deben coincidir con tus archivos en /routes)
+  // Rutas 
   app.use('/api', require('./routes/user'));         // GET /api/prueba-user
   app.use('/api', require('./routes/follow'));       // GET /api/prueba-follow
   app.use('/api', require('./routes/publication'));  // GET /api/prueba-publication
