@@ -1,125 +1,92 @@
-# Planificación del Desarrollo - Red Social API
+# Planificación del Desarrollo - Red Social API & Frontend
 
 ## Resumen del Proyecto
-API REST para una red social con funcionalidades de usuarios, publicaciones, y sistema de seguimiento.
+Aplicación completa de red social con backend (API REST) y frontend (React + Vite), incluyendo usuarios, publicaciones, seguimiento y autenticación.
 
-## Cronograma de 5 Semanas
+## Cronograma de 4 Semanas
 
-### Semana 1: Planificación y Análisis
-#### Días 1-2: Requerimientos y Análisis
-- [x] Definición de modelos de datos (User, Follow, Publication)
-- [x] Configuración inicial del proyecto
-- [x] Configuración de GitHub
-- [ ] Análisis de requisitos funcionales:
-  - Sistema de autenticación
-  - Gestión de usuarios
-  - Sistema de publicaciones
-  - Sistema de seguimientos
-  - Sistema de archivos (imágenes)
+### Semana 1: Diseño, Setup y Autenticación
+#### Backend
+- Configuración inicial del proyecto y repositorio
+- Definición de modelos de datos (User, Follow, Publication)
+- Conexión a MongoDB y configuración de entorno
+- Implementación de sistema de autenticación (registro, login, JWT)
+- Middleware de autenticación y validaciones
+- Documentación básica de endpoints
 
-#### Días 3-5: Diseño y Arquitectura
-- [ ] Diseño de la arquitectura del sistema
-- [ ] Diseño de la base de datos
-- [ ] Definición de endpoints de la API
-- [ ] Documentación de la API (Swagger/OpenAPI)
-- [ ] Definición de estándares de código
-- [ ] Planificación de pruebas
+#### Frontend
+- Creación del proyecto React con Vite y TypeScript
+- Estructura base de carpetas y rutas
+- Instalación de dependencias principales (axios, react-router-dom, jwt-decode)
+- Diseño de wireframes para login y registro
+- Configuración de estilos base (TailwindCSS o Material UI)
 
-### Semana 2: Desarrollo Base y Autenticación
-#### Días 1-3: Sistema de Usuarios
-- [ ] Implementación del modelo de usuario
-- [ ] Endpoints de registro (signup)
-- [ ] Endpoints de login
-- [ ] Middleware de autenticación JWT
-- [ ] Validaciones de datos
-- [ ] Encriptación de contraseñas
+### Semana 2: Gestión de Usuarios y Perfil
+#### Backend
+- Endpoints para obtener y actualizar perfil de usuario
+- Endpoint para subir avatar (Multer)
+- Validaciones y permisos en endpoints de usuario
+- Pruebas unitarias de usuarios
+- Mejoras en la documentación de API
 
-#### Días 4-5: Perfil de Usuario
-- [ ] Endpoints de perfil de usuario
-- [ ] Actualización de datos de usuario
-- [ ] Sistema de subida de avatares
-- [ ] Pruebas unitarias de autenticación
-- [ ] Documentación de endpoints implementados
+#### Frontend
+- Implementación de formularios de login y registro conectados al backend
+- Manejo de autenticación y almacenamiento de token JWT
+- Página de perfil de usuario (ver y editar datos)
+- Subida y visualización de avatar
+- Protección de rutas privadas en frontend
 
-### Semana 3: Sistema de Publicaciones
-#### Días 1-3: Core de Publicaciones
-- [ ] Implementación del modelo de publicaciones
-- [ ] CRUD de publicaciones
-- [ ] Sistema de subida de imágenes
-- [ ] Validaciones y permisos
-- [ ] Paginación de resultados
+### Semana 3: Publicaciones y Feed Social
+#### Backend
+- Modelo y endpoints CRUD de publicaciones
+- Endpoint para subir imágenes en publicaciones
+- Paginación y filtros en feed de publicaciones
+- Validaciones y permisos en publicaciones
+- Pruebas unitarias de publicaciones
 
-#### Días 4-5: Funcionalidades Adicionales
-- [ ] Sistema de likes
-- [ ] Feed de publicaciones
-- [ ] Filtros y búsquedas
-- [ ] Pruebas unitarias de publicaciones
-- [ ] Documentación de endpoints implementados
+#### Frontend
+- Página para crear, editar y eliminar publicaciones
+- Visualización de feed social con paginación
+- Subida y visualización de imágenes en publicaciones
+- Interacción básica (likes, comentarios si aplica)
+- Mejoras visuales y de usabilidad
 
-### Semana 4: Sistema de Seguimiento
-#### Días 1-3: Core de Seguimiento
-- [ ] Implementación del modelo de seguimiento
-- [ ] Endpoints para seguir/dejar de seguir
-- [ ] Lista de seguidores/seguidos
-- [ ] Validaciones y permisos
-- [ ] Timeline personalizado
+### Semana 4: Seguimiento, Optimización y Despliegue
+#### Backend
+- Modelo y endpoints para seguir/dejar de seguir usuarios
+- Listado de seguidores/seguidos
+- Endpoint para timeline personalizado
+- Optimización de consultas y paginación
+- Pruebas de integración y rendimiento
+- Documentación final de API
 
-#### Días 4-5: Optimización y Mejoras
-- [ ] Optimización de consultas
-- [ ] Implementación de caché
-- [ ] Pruebas de rendimiento
-- [ ] Documentación de endpoints implementados
-
-### Semana 5: Testing, Documentación y Despliegue
-#### Días 1-2: Testing Completo
-- [ ] Pruebas de integración
-- [ ] Pruebas de carga
-- [ ] Corrección de bugs
-- [ ] Optimización de rendimiento
-
-#### Días 3-4: Documentación Final
-- [ ] Documentación técnica completa
-- [ ] Guía de instalación
-- [ ] Documentación de API
-- [ ] Ejemplos de uso
-
-#### Día 5: Despliegue
-- [ ] Preparación para producción
-- [ ] Configuración de variables de entorno
-- [ ] Despliegue en servidor
-- [ ] Pruebas en producción
+#### Frontend
+- Funcionalidad de seguir/dejar de seguir usuarios
+- Visualización de seguidores/seguidos
+- Página de timeline personalizado
+- Pruebas de integración frontend-backend
+- Documentación técnica y guía de uso
+- Despliegue en servidor (Vercel, Netlify, o similar para frontend; servidor Node para backend)
 
 ## Entregables por Semana
 
 ### Semana 1
-- Documento de especificación de requisitos
-- Diagrama de arquitectura
-- Documentación inicial de API
-- Repositorio configurado
+- Backend y frontend base
+- Autenticación funcional
+- Documentación inicial
 
 ### Semana 2
-- Sistema de autenticación funcional
-- Endpoints de usuarios implementados
-- Pruebas unitarias de autenticación
-- Documentación actualizada
+- Gestión completa de usuarios y perfil
+- Frontend conectado y protegido
 
 ### Semana 3
-- Sistema de publicaciones completo
-- Sistema de archivos implementado
-- Pruebas unitarias de publicaciones
-- Documentación de endpoints
+- Sistema de publicaciones y feed social
+- Interacción básica
 
 ### Semana 4
-- Sistema de seguimiento implementado
-- Optimizaciones de rendimiento
-- Pruebas de integración
-- Documentación actualizada
-
-### Semana 5
-- Aplicación completamente probada
-- Documentación completa
-- Aplicación desplegada
-- Guía de mantenimiento
+- Sistema de seguimiento
+- Optimización y pruebas finales
+- Documentación y despliegue
 
 ## Tecnologías y Herramientas
 
@@ -129,6 +96,13 @@ API REST para una red social con funcionalidades de usuarios, publicaciones, y s
 - JWT para autenticación
 - Multer para archivos
 - Jest para testing
+
+### Frontend
+- React + Vite + TypeScript
+- Axios para llamadas a API
+- React Router DOM para rutas
+- TailwindCSS o Material UI para estilos
+- jwt-decode para manejo de tokens
 
 ### Herramientas de Desarrollo
 - Git para control de versiones
